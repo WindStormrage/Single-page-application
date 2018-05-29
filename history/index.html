@@ -1,0 +1,62 @@
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        div {
+            margin: 10px;
+        }
+        .msgBtn {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="msg"></div>
+    <br><br>
+    <span class="msgBtn" data-route='A'>toFirst</span>
+    <span class="msgBtn" data-route='B'>toSecond</span>
+    <span class="msgBtn" data-route='C'>toThird</span>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script type="text/javascript">
+        //路由注册
+        const message = {
+            undefined: 'massage',
+            A: 'hahahh',
+            B: 'hehehehe',
+            C: 'hohohoho'
+        };
+        //页面分发加载
+        function showMsg(el) {
+            const _loc = location.href;
+            let url_msg_id = GetRequest(_loc);
+            el.html(message[url_msg_id.msg]);
+        }
+        //监听前进后退按钮
+        window.addEventListener('popstate', function (e) {
+            showMsg($('#msg'));
+        });
+        //点击切换路由
+        $('.msgBtn').click(function (e) {
+            console.log(e.currentTarget );
+            history.pushState(null, null, '?msg=' + e.target.dataset.route);
+            showMsg($('#msg'));
+        });
+        //处理url
+        function GetRequest() {
+            let url = location.search; //获取url中"?"符后的字串
+            let theRequest = {};
+            if (url.indexOf("?") !== -1) {
+                let str = url.substr(1);
+                let strs = str.split("&");
+                for (let i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+        //页面加载渲染
+        showMsg($('#msg'));
+    </script>
+</body>
