@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="#A">to A</a>
+<a href="#B">to B</a>
+<a href="#C">to C</a>
+<div id="message">
+
+</div>
+<script>
+	const route = {
+		undefined: 'no message',
+		A: 'aaa',
+		B: 'BBB',
+		C: 'ccc'
+	};
+	function show() {
+		const _loc = location.href;
+		document.querySelector("#message").innerText = route[_loc.split("#")[1]];
+	}
+//	因为点击后退也会触发hashchange所以不需要监听点击前进后退了
+	window.addEventListener('hashchange', () => {
+		show()
+	});
+	show()
+</script>
+</body>
+</html>
