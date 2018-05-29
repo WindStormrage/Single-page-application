@@ -206,9 +206,9 @@ history的方法主要是应用了几个H5的histroy API：
 
 ## hash
 实现思路和之前的大概相同就是变化后面的哈希值，然后通过hashchange监听到哈希值的变化
-demo地址 https://github.com/WindStormrage/Single-page-application/blob/master/history/index.html
-
+demo地址 https://github.com/WindStormrage/Single-page-application/blob/master/hash/index.html
 
 ## 总结
 这样子是大概实现出了一个单页面的效果但是，还有几个单页面的要素没有体现出来，比如异步静态文件的加载。
-hash的缺点是，只好设置一层路由如果还有子页面需要路由会比较麻烦，然后还有的是就是#这个字符让url显得非常不美观
+
+然后hash的缺点是，只好设置一层路由如果还有子页面需要路由会比较麻烦，然后还有的是就是#这个字符让url显得非常不美观
